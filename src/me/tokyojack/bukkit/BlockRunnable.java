@@ -1,4 +1,4 @@
-package me.tokyojack.spigot.airdrop.utils;
+package package;
 
 import java.util.ArrayList;
 import java.util.List;
