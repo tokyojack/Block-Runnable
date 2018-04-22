@@ -55,6 +55,12 @@ public abstract class BlockRunnable {
 
 	protected abstract void stop(Block block);
 
+	/**
+	 * Starts the block runnable
+	 *
+	 * @param Block
+	 *            - The block where it's running
+	 */
 	public void startBlock(Block block) {
 		this.blocks.add(block);
 		start(block);
@@ -63,6 +69,12 @@ public abstract class BlockRunnable {
 			this.startPlayerRunnable();
 	}
 
+	/**
+	 * Stops the block runnable
+	 *
+	 * @param Block
+	 *            - The block where it's running
+	 */
 	public void stopBlock(Block block) {
 		this.blocks.remove(block);
 		stop(block);
@@ -71,10 +83,18 @@ public abstract class BlockRunnable {
 			this.stopBlockRunnable();
 	}
 
+	/**
+	 * Check's if there aren't any running runnables
+	 *
+	 * @return Boolean - If it's empty or not
+	 */
 	public Boolean isEmpty() {
 		return this.blocks.isEmpty();
 	}
 
+	/**
+	 * Start's the runnable
+	 */
 	private void startPlayerRunnable() {
 		this.runnableID = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this.plugin, new Runnable() {
 			public void run() {
@@ -85,6 +105,9 @@ public abstract class BlockRunnable {
 		}, 0, this.tickDelay);
 	}
 
+	/**
+	 * Stop's the runnable
+	 */
 	private void stopBlockRunnable() {
 		Bukkit.getScheduler().cancelTask(this.runnableID);
 		this.runnableID = -1;
